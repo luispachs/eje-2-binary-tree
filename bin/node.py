@@ -43,28 +43,28 @@ class node:
     
     def search(self,n,value:int|float):
         if n == None:
-            return None
-    
-        while n != None:
-            if n._current == value:
-                print(n._current)
-                break
-            print(n._current)
-            n.search(n.left if value < n._current else n.right,value)
-        return
+            return False
+        print(n._current) 
+        if value == n._current:
+            return True
+        else:
+            return n.search(n.left if value < n._current else n.right,value)
     
     def delete(self,n,value:int|float):
         if n == None:
-            return
+            return None
         if value == n._current:
             if n.right == None and n.left == None:
                 n = None
-            if n.rigth == value:
-                n.right == None
-            if n.left == value:
-                n.left == None
+                return
+            if n.right != None and n.right == value:
+                n.right = None
+                return
+            if n.left != None and n.left == value:
+                n.left = None
+                return
         else:
-            n.delete(n.left if value < n._current else n.right,value)
+            return n.delete(n.left if value < n._current else n.right,value)
 
 
     def showTwoChild(self,n):
@@ -74,3 +74,20 @@ class node:
             print(n._current)
         n.showTwoChild(n.left)
         n.showTwoChild(n.right)
+    
+    def showOneChild(self,n):
+        if n == None:
+            return None
+        
+        if(n.left != None and n.right == None) or (n.left == None and n.right != None): 
+            print(n._current)
+        n.showOneChild(n.left)
+        n.showOneChild(n.right)
+
+
+    def sumChild(self,n):
+        if n == None:
+            return 0
+        print((n.left._current if n.left != None else 0) + (n.right._current if n.right != None else 0))
+        n.sumChild(n.left)
+        n.sumChild(n.right)

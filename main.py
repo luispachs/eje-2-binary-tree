@@ -8,14 +8,23 @@ if __name__ == "__main__":
     print("2. Eliminar un nodo")
     print("3. Buscar un nodo")
     print("4. Recorrer el arbol")
-    print("5. Mostrar los que tienen dos Hijos")
+    print("5. Mostrar los que tienen dos hijos")
+    print("6. Mostrar los que tienen un hijos")
     print("0. Salir")
     while i != 0:
         print("seleccione una opcion")
-        i = int(input())
+        try:
+            i = int(input())
+        except ValueError:
+            print("Entrada inválida. Por favor, ingrese un número.")
+            continue
         if i == 1:
             print("Ingrese el valor del nodo a agregar")
-            value = int(input())
+            try:
+                value = int(input())
+            except ValueError:
+                print("Entrada inválida. Por favor, ingrese un número.")
+                continue
             if tree == None:
                 tree = node(value)
             else:
@@ -23,11 +32,20 @@ if __name__ == "__main__":
         
         if i == 2:
             print("Ingrese el value a eliminar")
-            value = int(input())
+            try:
+                value = int(input())
+            except ValueError:
+                print("Entrada inválida. Por favor, ingrese un número.")
+                continue
             tree.delete(tree,value)
         if i == 3:
             print("ingrese el valor a buscar")
-            value = int(input())
+            try:
+                value = int(input())
+            except ValueError:
+                print("Entrada inválida. Por favor, ingrese un número.")
+                continue
+            print("\nEl camino es:\n")
             tree.search(tree,value)
         if i == 4:
             print("Recorriendo inorder")
@@ -35,6 +53,12 @@ if __name__ == "__main__":
         if i == 5:
             print("mostrando los que tienen dos hijos")
             tree.showTwoChild(tree)
+        if i == 6:
+            print("mostrando los que tienen un hijo")
+            tree.showOneChild(tree)
+        if i == 7:
+            print("Sumar Hijos")
+            tree.sumChild(tree)
         if i == 0:
             break
     print( "Bye")
