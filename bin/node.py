@@ -54,17 +54,19 @@ class node:
         if n == None:
             return None
         if value == n._current:
-            if n.right == None and n.left == None:
-                n = None
-                return
-            if n.right != None and n.right == value:
+            if  n.right != None:
+                n._current = n.right._current
                 n.right = None
-                return
-            if n.left != None and n.left == value:
+            elif n.left != None:
+                n._current = n.left._current
                 n.left = None
-                return
+            else:
+                n._current = None
+            return
         else:
-            return n.delete(n.left if value < n._current else n.right,value)
+            return self.delete(n.left if value < n._current else n.right,value)
+        
+      
 
 
     def showTwoChild(self,n):
